@@ -7,7 +7,7 @@ from django.contrib.messages import constants
 
 def cadastro(request):
     if request.method == 'GET':
-        return render(request, 'static/usuarios/cadastro.html')
+        return render(request, 'usuarios/cadastro.html')
     else:
         username = request.POST.get('username')
         senha = request.POST.get('senha')
