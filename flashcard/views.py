@@ -10,6 +10,7 @@ def novo_flashcard(request):
     if request.method == 'GET':
         categorias = Categoria.objects.all()
         dificuldades = Flashcard.DIFICULDADE_CHOICES
+        flashcards = Flashcard.objects.filter(user=request.user)
 
         return render(
             request,
@@ -17,16 +18,16 @@ def novo_flashcard(request):
             {
                 'categorias': categorias,
                 'dificuldades': dificuldades,
+                'flashcards': flashcards,
             }
             
         )
     elif request.method == 'POST':
-        pergunta = request.POST.get('pergunta')
-        resposta = request.POST.get('resposta')
+        pergunta = request.POST.get('pergunta', '').strip()
+        resposta = request.POST.get('resposta', '').strip()
         categoria = request.POST.get('categoria')
         dificuldade = request.POST.get('dificuldade')
-
-        if len(pergunta.strip()) == 0 or len(resposta.strip()) == 0:
+        if len(pergunta) == 0 or len(resposta) == 0:
             messages.add_message(
                 request,
                 constants.ERROR,
