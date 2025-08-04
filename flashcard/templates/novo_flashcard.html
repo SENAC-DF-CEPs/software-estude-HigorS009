@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block 'cabecalho' %}
-    <link href="{% static 'usuarios/css/cadastro.css' %}" rel="stylesheet">
+{% block extra_css %}
+    <link href="{% static 'css/cadastro.css' %}" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}
 
-{% endblock 'cabecalho' %}
-
-{% block 'conteudo' %}
+{% block conteudo %}
 
     <div class="container">
         <br>
@@ -39,15 +38,20 @@
                                 <div class="col-md">
                                     <label for="">Categoria</label>
                                     <select class="form-select" name="categoria">
-                                        
+                                        <option value="">Selecione uma categoria</option>
+                                        {% for categoria in categorias %}
+                                            <option value="{{categoria.id}}">{{categoria.nome}}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-md">
                                     <label for="">Dificuldade</label>
                                     <select class="form-select" name="dificuldade">
-                                        
+                                        <option value="">Selecione a dificuldade</option>
+                                        {% for dificuldade in dificuldades %}
+                                            <option value="{{dificuldade.0}}">{{dificuldade.1}}</option>
+                                        {% endfor %}
                                     </select>
-
                                 </div>
                             
                         </div>
@@ -66,16 +70,19 @@
                         <div class="col-md">
                             <label for="">Categoria</label>
                             <select name="categoria" id="" class="form-select">
-                                <option value=""></option>
-                                {% for dificuldade in dificuldades %}
-                                    <option value="{{dificuldade.0}}">{{dificuldade.1}}</option>
+                                <option value="">Todas as categorias</option>
+                                {% for categoria in categorias %}
+                                    <option value="{{categoria.id}}">{{categoria.nome}}</option>
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="col-md">
                             <label for="">Dificuldade</label>
                             <select name="dificuldade" id="" class="form-select">
-                                <option value=""></option>
+                                <option value="">Todas as dificuldades</option>
+                                {% for dificuldade in dificuldades %}
+                                    <option value="{{dificuldade.0}}">{{dificuldade.1}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="col-md">
@@ -119,4 +126,4 @@
         </div>
     </div>
     
-{% endblock 'conteudo' %}
+{% endblock %}

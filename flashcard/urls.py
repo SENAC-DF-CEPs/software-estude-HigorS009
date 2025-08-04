@@ -1,6 +1,6 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
-  path('flashcard/', include('flashcard.urls')),
+    path('novo_flashcard/', views.novo_flashcard, name='novo_flashcard'),
 ]
