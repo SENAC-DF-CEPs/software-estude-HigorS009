@@ -18,11 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 
-def redirect_to_cadastro(request):
-    return redirect('cadastro/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuarios/', include('usuarios.urls')),
-    path('', redirect_to_cadastro, name='home'),
 ]
