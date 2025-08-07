@@ -13,3 +13,7 @@ body{
     background-color: var(--dark-color) !important;
     color: white !important;
 }
+
+.bg-main{
+    background-color: var(--main-color);
+}

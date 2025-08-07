@@ -71,7 +71,7 @@
 }
 
 .resposta-flashcard {
-    background-color: #34495e;
+    background-color: rgb(255, 255, 255, 0.08) !important;
     color: white;
     padding: 15px;
     border-radius: 0 0 10px 10px;
@@ -109,8 +109,7 @@
 }
 
 .resposta-flashcard{
-    background-color: rgba(255, 255, 255, .08);
-    border-top: 1px solid rgba(255, 255, 255, .06);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding: 20px;
     display: none;
 }

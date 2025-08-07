@@ -10,3 +10,7 @@
 .ctx{
     text-align: center;
 }
+
+.card-body {
+    color: white;
+}
