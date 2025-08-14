@@ -62,6 +62,9 @@ def deletar_flashcard(request, id):
 
 
 def iniciar_desafio(request):
+    if not request.user.is_authenticated:
+        return redirect('/usuarios/login')
+        
     if request.method == 'GET':
         categorias = Categoria.objects.all()
         dificuldades = Flashcard.DIFICULDADE_CHOICES
@@ -94,6 +97,11 @@ def iniciar_desafio(request):
         )
 
         if flashcards.count() < int(qtd_perguntas):
+            messages.add_message(
+                request, 
+                constants.ERROR, 
+                f'Não há flashcards suficientes. Encontrados: {flashcards.count()}, necessários: {qtd_perguntas}'
+            )
             return redirect('/flashcard/iniciar_desafio/')
 
         flashcards = flashcards[: int(qtd_perguntas)]
@@ -154,15 +162,6 @@ def responder_flashcard(request, id):
     flashcard_desafio.save()
     return redirect(f'/flashcard/desafio/{desafio_id}/')
 
-@property
-def css_dificuldade(self):
-    if self.dificuldade == 'F':
-        return 'flashcard-facil'
-    elif self.dificuldade == 'M':
-        return 'flashcard-medio'
-    elif self.dificuldade == 'D':
-        return 'flashcard-dificil'
-    
 def relatorio(request, id):
     desafio = Desafio.objects.get(id=id)
 
@@ -180,4 +179,4 @@ def relatorio(request, id):
     for categoria in categorias:
         dados2.append(desafio.flashcards.filter(flashcard__categoria=categoria).filter(acertou=True).count())
 
-    return render(request, 'relatorio.html', {'desafio': desafio, 'dados': dados, 'categorias': name_categoria, 'dados2': dados2,},)
+        return render(request, 'relatorio.htm', {'desafio': desafio, 'dados': dados, 'categorias': name_categoria, 'dados2': dados2,},)

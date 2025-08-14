@@ -58,5 +58,19 @@ class Desafio(models.Model):
             return 'flashcard-dificil'
         return ''
 
+    @property
+    def status(self):
+        total_flashcards = self.flashcards.count()
+        if total_flashcards == 0:
+            return "Não iniciado"
+        
+        respondidos = self.flashcards.filter(respondido=True).count()
+        if respondidos == 0:
+            return "Não iniciado"
+        elif respondidos < total_flashcards:
+            return "Em andamento"
+        else:
+            return "Concluído"
+
     def __str__(self):
         return self.titulo
