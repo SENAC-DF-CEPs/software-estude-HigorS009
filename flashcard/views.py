@@ -179,4 +179,4 @@ def relatorio(request, id):
     for categoria in categorias:
         dados2.append(desafio.flashcards.filter(flashcard__categoria=categoria).filter(acertou=True).count())
 
-        return render(request, 'relatorio.htm', {'desafio': desafio, 'dados': dados, 'categorias': name_categoria, 'dados2': dados2,},)
+    return render(request, 'relatorio.htm', {'desafio': desafio, 'dados': dados, 'categorias': name_categoria, 'dados2': dados2,},)

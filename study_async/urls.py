@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
+from usuarios.views import home
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home, name='home'),
     path('usuarios/', include('usuarios.urls')),
     path('flashcard/', include('flashcard.urls')),
 ]

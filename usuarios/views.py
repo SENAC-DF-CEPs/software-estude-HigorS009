@@ -6,6 +6,9 @@ from django.contrib import auth
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'home.html')
+
 def cadastro(request):
     if request.method == 'GET':
         print('GET request received for cadastro')

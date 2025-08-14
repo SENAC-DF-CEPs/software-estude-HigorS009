@@ -1,5 +1,5 @@
 <nav style="background-color: var(--main-color)" class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand ml-6" href="#">   Estude</a>
+    <a class="navbar-brand" style="color:#58fcd5; font-size: 22px; margin-left: 15px;" href="/">Estude</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,6 +17,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="">Apostilas</a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link" href="{% url 'logout' %}">Sair</a>
         </li>
       </ul>
     </div>
