@@ -8,7 +8,9 @@
     <link href="{% static 'geral/css/base.css' %}" rel="stylesheet">
     {% block extra_css %}{% endblock %}
     <title>Estude</title>
-    {% block cabecalho %} {% endblock %}
+    {% block cabecalho %}
+      {% include 'header.html' %}
+    {% endblock %}
   </head>
   <body>
     {% block conteudo %}{% endblock %}
