@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cabecalho %}
+    <link href="{% static 'css/cadastro.css' %}" rel="stylesheet">
+    <link href="{% static 'css/novo_flashcard.css' %}" rel="stylesheet">
+    <link href="{% static 'css/iniciar_desafio.css' %}" rel="stylesheet">
+    <link href="{% static 'css/desafio.css' %}" rel="stylesheet">
+    <link href="{% static 'css/adicionar_apostilas.css' %}" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock cabecalho %}
+
+{% block conteudo %}
+    {% include "header.html" %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="mb-4">{{ apostila.titulo }}</h2>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Visualizar ou Baixar Apostila</h5>
+                        <a href="{{ apostila.arquivo.url }}" class="btn btn-primary mt-3" target="_blank">
+                            <i class='bx bx-download'></i> Baixar Apostila
+                        </a>
+                        <div id="pdf-container" class="mt-4" style="border: 1px solid #ddd; padding: 10px; text-align: center;">
+                            <!-- <p>Pré-visualização indisponível</p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Estatísticas</h5>
+                        <p class="card-text">
+                            <strong>Views únicas:</strong> {{ views_unicas }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Views totais:</strong> {{ views_totais }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+
+        const container = document.getElementById('pdf-container');
+
+        pdfjsLib.getDocument("{{apostila.arquivo.url}}").promise.then(pdf => {
+            pdf.getPage(1).then(page => {
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                const viewport = page.getViewport({ scale: 0.6 });
+
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                page.render({ canvasContext: context, viewport }).promise.then(() => {
+                    container.appendChild(canvas);
+                });
+            });
+        });
+    </script>
+{% endblock conteudo %}

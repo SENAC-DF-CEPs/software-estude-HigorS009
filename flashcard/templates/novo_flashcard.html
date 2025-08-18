@@ -43,9 +43,14 @@
                                     <label for="">Categoria</label>
                                     <select class="form-select" name="categoria">
                                         <option value="">Selecione uma categoria</option>
-                                        {% for categoria in categorias %}
-                                            <option value="{{categoria.id}}">{{categoria.nome}}</option>
-                                        {% endfor %}
+                                        {% if categorias %}
+                                            {% for categoria in categorias %}
+                                                <option value="{{categoria.id}}">{{categoria.nome}}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                        {% if not categorias %}
+                                            <option value="">Nenhuma categoria disponível</option>
+                                        {% endif %}
                                     </select>
                                 </div>
                                 <div class="col-md">
