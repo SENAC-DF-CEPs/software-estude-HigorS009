@@ -1,0 +1,182 @@
+/* Estilos para a página inicial */
+
+.hero-section {
+    background: linear-gradient(135deg, var(--main-color) 0%, var(--dark-color) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content h1 {
+    color: white;
+    line-height: 1.2;
+}
+
+.hero-content .text-primary {
+    color: var(--light-color) !important;
+}
+
+.hero-content .lead {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+}
+
+.hero-buttons .btn {
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--light-color);
+    border-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--contrast-color);
+    border-color: var(--contrast-color);
+    color: var(--dark-color);
+    transform: translateY(-2px);
+}
+
+.btn-outline-light:hover {
+    transform: translateY(-2px);
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flashcard-demo {
+    position: relative;
+    transform: rotateY(-15deg) rotateX(10deg);
+    perspective: 1000px;
+}
+
+.flashcard-card {
+    background: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    color: var(--dark-color);
+    width: 300px;
+    height: 200px;
+}
+
+.flashcard-card:hover {
+    transform: translateY(-10px);
+}
+
+.features-section {
+    background-color: var(--secondary-dark-color);
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--light-color);
+    margin-bottom: 1rem;
+}
+
+.feature-card h4 {
+    color: white;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.feature-card p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, var(--dark-color) 0%, var(--main-color) 100%);
+}
+
+.cta-section h3 {
+    color: white;
+}
+
+.cta-section .lead {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    animation: fadeInUp 1s ease-out;
+}
+
+.flashcard-demo {
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+        padding: 2rem 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-buttons .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .flashcard-demo {
+        transform: none;
+        margin-top: 2rem;
+    }
+    
+    .feature-card {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Ícones boxicons */
+.bx {
+    margin-right: 0.5rem;
+}
+
+
+.text-green{
+    color:#58fcd5;
+}
+
+.btn-primary {
+  background: #58fcd5;
+  border: 1px solid #58fcd5;
+}
