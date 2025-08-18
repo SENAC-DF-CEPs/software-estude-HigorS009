@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cabecalho %}
+
+    <link href="{% static 'css/cadastro.css' %}" rel="stylesheet">
+    <link href="{% static 'css/flashcard/novo_flashcard.css' %}" rel="stylesheet">
+    <link href="{% static 'css/flashcard/iniciar_desafio.css' %}" rel="stylesheet">
+    <link href="{% static 'css/flashcard/desafio.css' %}" rel="stylesheet">
+    <link href="{% static 'css/apostila/adicionar_apostilas.css' %}" rel="stylesheet">
+    <link href="{% static 'css/apostila/apostila.css' %}" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+{% endblock cabecalho %}
+
+
+{% block conteudo %}
+    {% include "header.html" %}
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <div class="col-md">
+
+                <div class="box-form">
+                    {% if messages %}
+                        <br>
+                        {% for message in messages %}
+                            <section class="alert {{message.tags}}">
+                                {{message}}
+                            </section>
+                        {% endfor %}
+                        <br>
+                    {% endif %}
+                    <form action="" method="POST" enctype='multipart/form-data'>{% csrf_token %}
+                        <p class="fonte-secundaria">Adicionar resumos</p>
+                        <label>Titulo</label>
+                        <input type="text" name="titulo" placeholder="titulo" class="form-control">
+                        <br>
+                        <label>Arquivo</label>
+                        <input type="file" name="arquivo" class="form-control">
+                        <br>
+                        <input type="submit" class="btn-cadastro" value="Enviar">
+                    </form>
+                </div>
+
+            </div>
+            <div class="col-md">
+              <div class="card shadow-sm">
+                  <div class="card-header bg-main text-white">
+                      <h5 class="mb-0">Lista de Apostilas</h5>
+                  </div>
+                  <div class="card-body bg-main">
+                      <table class="table table-striped table-hover">
+                          <thead class="table-dark">
+                              <tr>
+                                  <th scope="col">Título</th>
+                                  <th scope="col">Ação</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {% for apostila in apostilas %}
+                                  <tr>
+                                      <td>{{ apostila.titulo }}</td>
+                                      <td>
+                                          <a href="{% url 'apostila' apostila.id %}" 
+                                            class="btn btn-sm {% if apostila.is_new %}btn-success{% else %}btn-outline-primary{% endif %}">
+                                              <i class='bx bx-folder-open'></i> Abrir
+                                          </a>
+                                      </td>
+                                  </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="card-footer bg-main text-muted">
+                      <p class="mb-0 text-white">Views totais: <strong class="text-white">{{ views_totais }}</strong></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+{% endblock conteudo %}
